@@ -1,10 +1,8 @@
 import { MongoClient } from 'mongodb'
 
 const connection = async () => {
-    const uri =`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_NAME}/?retryWrites=true&w=majority`
-    const client = new MongoClient(uri)
-    const connect = await client.connect()
-    return connect.db('test')
+    const client = new MongoClient(`mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`)
+    return client.connect()
 }
 
 export default {
